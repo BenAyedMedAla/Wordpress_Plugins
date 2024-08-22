@@ -265,7 +265,7 @@ function apisearchplugin_render_search_page() {
 
 function apisearchplugin_admin_enqueue_scripts() {
     // Enqueue the new JS file for autocomplete
-    wp_enqueue_script('apisearchplugin-autocomplete', plugin_dir_url(__FILE__) . 'apisearchplugin-autocomplete.js', array('jquery'), null, true);
+    wp_enqueue_script('apisearchplugin-autocomplete', plugin_dir_url(__FILE__) . 'js/apisearchplugin-autocomplete.js', array('jquery'), null, true);
     
     // Localize the script for AJAX
     wp_localize_script('apisearchplugin-autocomplete', 'apisearchplugin_ajax', array(
@@ -281,14 +281,14 @@ add_action('admin_enqueue_scripts', 'apisearchplugin_admin_enqueue_scripts');
 // Enqueue the JavaScript file for AJAX
 
 function apisearchplugin_enqueue_scripts() {
-    wp_enqueue_script('apisearchplugin-ajax', plugin_dir_url(__FILE__) . 'apisearchplugin.js', array('jquery'), null, true);
+    wp_enqueue_script('apisearchplugin-ajax', plugin_dir_url(__FILE__) . 'js/apisearchplugin.js', array('jquery'), null, true);
     wp_localize_script('apisearchplugin-ajax', 'apisearchplugin_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('apisearchplugin_nonce')
     ));
 
     // Enqueue front-end styles
-    wp_enqueue_style('apisearchplugin-styles', plugin_dir_url(__FILE__) . 'front_apisearchplugin.css');
+    wp_enqueue_style('apisearchplugin-styles', plugin_dir_url(__FILE__) . 'css/front_apisearchplugin.css');
 }
 add_action('wp_enqueue_scripts', 'apisearchplugin_enqueue_scripts');
 
@@ -376,7 +376,7 @@ add_action('wp_ajax_nopriv_residence_details', 'apisearchplugin_ajax_residence_d
 
 function apisearchplugin_add_styles() {
 
-    wp_enqueue_style('apisearchplugin-admin-styles', plugin_dir_url(__FILE__) . 'front_apisearchplugin.css');
+    wp_enqueue_style('apisearchplugin-admin-styles', plugin_dir_url(__FILE__) . 'css/front_apisearchplugin.css');
 
 }
 
@@ -388,7 +388,7 @@ add_action('admin_enqueue_scripts', 'apisearchplugin_add_styles');
 
 function api_searchplugin_add_styles() {
 
-    wp_enqueue_style('apisearchplugin-styles', plugin_dir_url(__FILE__) . 'front_apisearchplugin.css');
+    wp_enqueue_style('apisearchplugin-styles', plugin_dir_url(__FILE__) . 'css/front_apisearchplugin.css');
 
 }
 

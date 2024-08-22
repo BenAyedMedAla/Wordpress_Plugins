@@ -55,7 +55,7 @@ function chatbotplugin_call_api() {
 }
 
 function chatbotplugin_render_chatbot_interface() {
-    echo '<button id="chatbot-toggle-btn"><img src="' . plugin_dir_url(__FILE__) . 'chatbot.png" alt="Chatbot Icon" /> Chatbot </button>';
+    echo '<button id="chatbot-toggle-btn"><img src="' . plugin_dir_url(__FILE__) . 'sources/chatbot.png" alt="Chatbot Icon" /> Chatbot </button>';
     echo '<div id="chatbotplugin">';
     echo '<div class="chat-header"><span>Chatbot</span><button id="close-btn">&times;</button></div>';
     echo '<div id="chatbotplugin-chatbox"></div>'; // Chat screen to display conversation
@@ -250,20 +250,20 @@ add_action('wp_ajax_nopriv_chatbotplugin_request', 'chatbotplugin_handle_questio
  
 
 function chatbotplugin_enqueue_scripts() {
-    wp_enqueue_script('chatbotplugin-ajax', plugin_dir_url(__FILE__) . 'chatbotplugin.js', array('jquery'), null, true);
+    wp_enqueue_script('chatbotplugin-ajax', plugin_dir_url(__FILE__) . 'js/chatbotplugin.js', array('jquery'), null, true);
     
     wp_localize_script('chatbotplugin-ajax', 'chatbotplugin_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('chatbotplugin_nonce')
     ));
-    wp_enqueue_style('chatbotplugin-styles', plugin_dir_url(__FILE__) . 'chatbotplugin.css');
+    wp_enqueue_style('chatbotplugin-styles', plugin_dir_url(__FILE__) . 'css/chatbotplugin.css');
 
 }
 
 add_action('wp_enqueue_scripts', 'chatbotplugin_enqueue_scripts');
 
 function chatbotplugin_enqueue_admin_scripts() {
-    wp_enqueue_script('chatbotplugin-ajax', plugin_dir_url(__FILE__) . 'chatbotplugin.js', array('jquery'), null, true);
+    wp_enqueue_script('chatbotplugin-ajax', plugin_dir_url(__FILE__) . 'js/chatbotplugin.js', array('jquery'), null, true);
     
     wp_localize_script('chatbotplugin-ajax', 'chatbotplugin_ajax', array(
         'ajax_url' => admin_url('admin-ajax.php'),
@@ -276,7 +276,7 @@ add_action('admin_enqueue_scripts', 'chatbotplugin_enqueue_admin_scripts');
 
 function chatbotplugin_add_styles() {
 
-    wp_enqueue_style('chatbotplugin-styles', plugin_dir_url(__FILE__) . 'chatbotplugin.css');
+    wp_enqueue_style('chatbotplugin-styles', plugin_dir_url(__FILE__) . 'css/chatbotplugin.css');
 
 }
 
