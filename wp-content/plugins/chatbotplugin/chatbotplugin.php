@@ -16,6 +16,7 @@ function chatbotplugin_add_admin_page() {
         'dashicons-format-chat',
         6
     );
+    
 }
 add_action('admin_menu', 'chatbotplugin_add_admin_page');
 
