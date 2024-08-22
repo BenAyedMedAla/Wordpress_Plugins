@@ -54,23 +54,23 @@ function chatbotplugin_call_api() {
     return $data;
 }
 
-function chatbotplugin_render_chatbot_interface() {
-    echo '<button id="chatbot-toggle-btn"><img src="' . plugin_dir_url(__FILE__) . 'sources/chatbot.png" alt="Chatbot Icon" /> Chatbot </button>';
-    echo '<div id="chatbotplugin">';
-    echo '<div class="chat-header"><span>Chatbot</span><button id="close-btn">&times;</button></div>';
-    echo '<div id="chatbotplugin-chatbox"></div>'; // Chat screen to display conversation
-    echo '<div id="chatbotplugin-buttons">';
-    echo '<button id="city" data-question="city" >City</button>';
-    echo '<button id="budget" data-question="budget" >Budget</button>';
-    echo '<button id="name" data-question="name" >Name</button>';
-    echo '</div>';
-    echo '<div class="chat-input">';
-    echo '<input type="text" id="chatbotplugin-input" placeholder="Ask a question..." />';
-    echo '<button id="chatbotplugin-send">Send</button>';
-    echo '</div>';
-    echo '<div class="copyright"><a href="https://www.thecodinghubs.com/" target="_blank">Search for residences</a></div>';
-    echo '</div>';
-}
+function chatbotplugin_render_chatbot_interface() { ?>
+    <button id="chatbot-toggle-btn"><img src="<?php echo '' . plugin_dir_url(__FILE__) . 'sources/chatbot.png';?>" alt="Chatbot Icon" /> Chatbot </button>
+     <div id="chatbotplugin">
+     <div class="chat-header"><span>Chatbot</span><button id="close-btn">&times</button></div>
+     <div id="chatbotplugin-chatbox"></div> 
+     <div id="chatbotplugin-buttons">
+     <button id="city" data-question="city" >City</button>
+     <button id="budget" data-question="budget" >Budget</button>
+     <button id="name" data-question="name" >Name</button>
+     </div>
+     <div class="chat-input">
+     <input type="text" id="chatbotplugin-input" placeholder="Ask a question..." />
+     <button id="chatbotplugin-send">Send</button>
+     </div>
+     <div class="copyright"><a href="https://www.thecodinghubs.com/" target="_blank">Search for residences</a></div>
+     </div>
+<?php }
 
 function chatbotplugin_handle_question() {
     check_ajax_referer('chatbotplugin_nonce', 'nonce');
@@ -86,26 +86,25 @@ function chatbotplugin_handle_question() {
             return stripos($residence->city, $query) !== false;
         });
         if (!empty($filtered_residences)) {
-            ob_start();
-            echo '<div class="chatbotplugin-cards-container">';
-            foreach ($filtered_residences as $residence) {
+            ob_start();?>
+            <div class="chatbotplugin-cards-container">
+            <?php foreach ($filtered_residences as $residence) {
                 $title = esc_html($residence->title);
                 $address = esc_html($residence->address . ', ' . $residence->zip_code . ' ' . $residence->city);
                 $price = isset($residence->preview->rent_amount_from) ? esc_html($residence->preview->rent_amount_from) : 'Prix non disponible';
-                $picture_url = !empty($residence->pictures) ? esc_url($residence->pictures[0]->url) : 'https://via.placeholder.com/150';
-                // $details_url = add_query_arg('residence_id', $residence->id,get_permalink(get_page_by_path('residence-details')));
-
-                echo '<div class="chatbotplugin-card">';
-                echo '<img src="' . $picture_url . '" alt="' . $title . '" class="chatbotplugin-card-img">';
-                echo '<div class="chatbotplugin-card-body">';
-                echo '<h3 class="chatbotplugin-card-title">' . $title . '</h3>';
-                echo '<p class="chatbotplugin-card-address">' . $address . '</p>';
-                echo '<p class="chatbotplugin-card-price">' . $price . ' €</p>';
-                echo '<a href="http://localhost:8084/?page_id=39" id="chatbotplugin-view-details-button" class="chatbotplugin-view-details-button">See More</a>';
-                echo '</div>';
-                echo '</div>';
-            }
-            echo '</div>';
+                $picture_url = !empty($residence->pictures) ? esc_url($residence->pictures[0]->url) : 'https://via.placeholder.com/150'; ?>
+                <div class="chatbotplugin-card">
+                <img src="<?php echo '' . $picture_url . '';?>" alt="' . $title . '" class="chatbotplugin-card-img">
+                <div class="chatbotplugin-card-body">
+                <h3 class="chatbotplugin-card-title"><?php echo '' . $title . '';?></h3>
+                <p class="chatbotplugin-card-address"><?php echo '' . $address . '';?></p>
+                <p class="chatbotplugin-card-price"><?php echo '' . $price . '';?> €</p>
+                <a href="http://localhost:8084/?page_id=39" id="chatbotplugin-view-details-button" class="chatbotplugin-view-details-button">See More</a>
+                </div>
+                </div>
+            <?php } ?>
+            </div>
+            <?php
             $response = ob_get_clean();
         } else {
             $response = "No residences found in $query.";
@@ -122,19 +121,19 @@ function chatbotplugin_handle_question() {
                 $title = esc_html($residence->title);
                 $address = esc_html($residence->address . ', ' . $residence->zip_code . ' ' . $residence->city);
                 $price = isset($residence->preview->rent_amount_from) ? esc_html($residence->preview->rent_amount_from) : 'Prix non disponible';
-                $picture_url = !empty($residence->pictures) ? esc_url($residence->pictures[0]->url) : 'https://via.placeholder.com/150';
+                $picture_url = !empty($residence->pictures) ? esc_url($residence->pictures[0]->url) : 'https://via.placeholder.com/150'; ?>
 
-                echo '<div class="chatbotplugin-card">';
-                echo '<img src="' . $picture_url . '" alt="' . $title . '" class="chatbotplugin-card-img">';
-                echo '<div class="chatbotplugin-card-body">';
-                echo '<h3 class="chatbotplugin-card-title">' . $title . '</h3>';
-                echo '<p class="chatbotplugin-card-address">' . $address . '</p>';
-                echo '<p class="chatbotplugin-card-price">' . $price . ' €</p>';
-                echo '<a href="http://localhost:8084/?page_id=39" id="chatbotplugin-view-details-button" class="chatbotplugin-view-details-button">See More</a>';
-                echo '</div>';
-                echo '</div>';
-            }
-            echo '</div>';
+                <div class="chatbotplugin-card">
+                <img src="<?php echo '' . $picture_url . '';?>" alt="' . $title . '" class="chatbotplugin-card-img">
+                <div class="chatbotplugin-card-body">
+                <h3 class="chatbotplugin-card-title"><?php echo '' . $title . '';?></h3>
+                <p class="chatbotplugin-card-address"><?php echo '' . $address . '';?></p>
+                <p class="chatbotplugin-card-price"><?php echo '' . $price . '';?> €</p>
+                <a href="http://localhost:8084/?page_id=39" id="chatbotplugin-view-details-button" class="chatbotplugin-view-details-button">See More</a>
+                </div>
+                </div> <?php
+            }?>
+            </div> <?php
             $response = ob_get_clean();
         } else {
             $response = "No residences found within a budget of $query €.";
@@ -150,17 +149,17 @@ function chatbotplugin_handle_question() {
             $title = esc_html($residence->title);
             $address = esc_html($residence->address . ', ' . $residence->zip_code . ' ' . $residence->city);
             $price = isset($residence->preview->rent_amount_from) ? esc_html($residence->preview->rent_amount_from) : 'Prix non disponible';
-            $picture_url = !empty($residence->pictures) ? esc_url($residence->pictures[0]->url) : 'https://via.placeholder.com/150';
+            $picture_url = !empty($residence->pictures) ? esc_url($residence->pictures[0]->url) : 'https://via.placeholder.com/150'; ?>
 
-            echo '<div class="chatbotplugin-card">';
-            echo '<img src="' . $picture_url . '" alt="' . $title . '" class="chatbotplugin-card-img">';
-            echo '<div class="chatbotplugin-card-body">';
-            echo '<h3 class="chatbotplugin-card-title">' . $title . '</h3>';
-            echo '<p class="chatbotplugin-card-address">' . $address . '</p>';
-            echo '<p class="chatbotplugin-card-price">' . $price . ' €</p>';
-            echo '<a href="http://localhost:8084/?page_id=39" id="chatbotplugin-view-details-button" class="chatbotplugin-view-details-button">See More</a>';
-            echo '</div>';
-            echo '</div>';
+            <div class="chatbotplugin-card">
+            <img src="<?php echo '' . $picture_url . '';?>" alt="' . $title . '" class="chatbotplugin-card-img">
+            <div class="chatbotplugin-card-body">
+            <h3 class="chatbotplugin-card-title"><?php echo '' . $title . '';?></h3>
+            <p class="chatbotplugin-card-address"><?php echo '' . $address . '';?></p>
+            <p class="chatbotplugin-card-price"><?php echo '' . $price . '';?> €</p>
+            <a href="http://localhost:8084/?page_id=39" id="chatbotplugin-view-details-button" class="chatbotplugin-view-details-button">See More</a>
+            </div>
+            </div><?php
             $response = ob_get_clean();
         } else {
             $response = "No residence found with the name $query.";
@@ -283,9 +282,9 @@ function chatbotplugin_add_styles() {
 add_action('admin_enqueue_scripts', 'chatbotplugin_add_styles');
 
 
-function chatbotplugin_render_admin_page() {
-    echo '<div class="wrap">';
-    echo '<h1>Chatbot Plugin</h1>';
+function chatbotplugin_render_admin_page() {?>
+    <div class="wrap">
+    <h1>Chatbot Plugin</h1> <?php
     $residence_id = isset($_GET['residence_id']) ? intval($_GET['residence_id']) : 0;
     if ($residence_id) {
 
@@ -295,7 +294,7 @@ function chatbotplugin_render_admin_page() {
    } else {
         chatbotplugin_render_chatbot_interface();
 
-   }
-    echo '</div>';
-}
+   }?>
+    </div>
+<?php }
 ?>
