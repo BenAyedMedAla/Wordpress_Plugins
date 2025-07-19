@@ -1,0 +1,40 @@
+
+
+services:
+  wordpress:
+    image: wordpress:latest
+    volumes:
+      - D:/stage-sifast:/var/www/html
+    ports:
+      - "8084:80"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: ultrassfaxiens2007
+      WORDPRESS_DB_NAME: sifast-DB
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    ports:
+      - "8085:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ultrassfaxiens2007
+      MYSQL_DATABASE: sifast-DB
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - "8083:80"
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ultrassfaxiens2007
+      MYSQL_USERNAME: root
+
+volumes:
+  db_data:

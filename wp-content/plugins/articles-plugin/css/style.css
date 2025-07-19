@@ -1,0 +1,37 @@
+/* Admin and front end card styles */
+.api-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px; /* Adjust card width */
+    display: inline-block; /* Align cards next to each other */
+    vertical-align: top;
+}
+
+.api-card img {
+    width: 100%;
+    height: auto;
+}
+
+.api-card-content {
+    padding: 15px;
+}
+
+.api-card-content h2 {
+    font-size: 16px; /* Adjust title font size */
+    margin: 0 0 10px;
+}
+
+.api-card-content p {
+    font-size: 14px; /* Adjust text font size */
+    margin: 0 0 10px;
+}
+
+/* Style for admin dashboard */
+.wrap .api-card {
+    display: inline-block; /* Align cards next to each other */
+    vertical-align: top;
+    margin: 10px; /* Adjust margin between cards */
+}

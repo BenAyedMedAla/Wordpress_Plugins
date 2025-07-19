@@ -1,0 +1,172 @@
+/* Styles for Cards */
+
+.apisearchplugin-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.apisearchplugin-card {
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+    background-color: #fff;
+    text-align: center;
+}
+
+.apisearchplugin-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.apisearchplugin-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.apisearchplugin-card-body {
+    padding: 15px;
+}
+
+.apisearchplugin-card-title {
+    font-size: 18px;
+    margin: 0 0 10px;
+}
+
+.apisearchplugin-card-address {
+    font-size: 14px;
+    color: #555;
+    margin: 0 0 10px;
+}
+
+.apisearchplugin-card-price {
+    font-size: 16px;
+    color: #0073aa;
+    margin: 0 0 15px;
+}
+
+.apisearchplugin-card-button {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #0073aa;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.apisearchplugin-card-button:hover {
+    background-color: #005177;
+}
+
+
+
+/* Styles for Details */
+
+.apisearchplugin-details {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.apisearchplugin-details img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.apisearchplugin-details h2 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.apisearchplugin-details h3 {
+    font-size: 20px;
+    color: #0073aa;
+    margin-top: 20px;
+}
+
+.apisearchplugin-details p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.apisearchplugin-details-offers,
+.apisearchplugin-details-services {
+    list-style: none;
+    padding-left: 0;
+}
+
+.apisearchplugin-details-offers li,
+.apisearchplugin-details-services li {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #555;
+}
+
+.apisearchplugin-details-offers li:before,
+.apisearchplugin-details-services li:before {
+    content: "•";
+    color: #0073aa;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+
+/* Add some spacing between sections */
+
+.apisearchplugin-details section {
+    margin-bottom: 20px;
+}
+
+
+/* Add styles for buttons within the details page */
+
+.apisearchplugin-details .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0073aa;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.apisearchplugin-details .button:hover {
+    background-color: #005177;
+}
+
+
+/* Improve table styles if any */
+
+.apisearchplugin-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.apisearchplugin-details table th,
+.apisearchplugin-details table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.apisearchplugin-details table th {
+    background-color: #f7f7f7;
+    color: #333;
+    font-weight: bold;
+}
